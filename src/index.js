@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 
 import seeder from "./database/seeder.js";
 
-import nonAuthRouter from "./routes/nonAuthRoutes.js";
+import router from "./routes/routes.js";
 
 dotenv.config();
 const port = process.env.PORT || 3000;
@@ -17,7 +17,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use(nonAuthRouter);
+app.use(router);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

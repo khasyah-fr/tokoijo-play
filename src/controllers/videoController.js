@@ -1,8 +1,18 @@
+import { Counter } from "prom-client";
+
 import VideoService from "../services/videoService.js";
 import { Response } from "../entities/response.js";
 
+const videoRequestCounter = new Counter({
+  name: "videos_http_requests_total",
+  help: "Total number of HTTP requests related to videos",
+  labelNames: ["method"],
+});
+
 export const getVideos = async (req, res) => {
   try {
+    videoRequestCounter.labels("GET").inc();
+
     const videos = await VideoService.getVideos();
     return Response({
       res,
@@ -22,6 +32,8 @@ export const getVideos = async (req, res) => {
 
 export const getVideoById = async (req, res) => {
   try {
+    videoRequestCounter.labels("GET").inc();
+
     const { id } = req.params;
     const video = await VideoService.getVideoById(id);
 
@@ -56,6 +68,8 @@ export const getVideoById = async (req, res) => {
 
 export const getVideosByTitle = async (req, res) => {
   try {
+    videoRequestCounter.labels("GET").inc();
+
     const { title } = req.body;
     const videos = await VideoService.getVideosByTitle(title);
     return Response({

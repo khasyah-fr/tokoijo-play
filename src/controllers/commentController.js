@@ -1,8 +1,18 @@
+import { Counter } from "prom-client";
+
 import CommentService from "../services/commentService.js";
 import { Response } from "../entities/response.js";
 
+const commentRequestCounter = new Counter({
+  name: "comments_http_requests_total",
+  help: "Total number of HTTP requests related to comments",
+  labelNames: ["method"],
+});
+
 export const getCommentsByVideoId = async (req, res) => {
   try {
+    commentRequestCounter.labels("GET").inc();
+
     const { id } = req.params;
     const comments = await CommentService.getCommentsByVideoId(id);
 
@@ -33,6 +43,8 @@ export const getCommentsByVideoId = async (req, res) => {
 
 export const createComment = async (req, res) => {
   try {
+    commentRequestCounter.labels("POST").inc();
+
     const { id } = req.params;
     const { user_id, message } = req.body;
     const comment = await CommentService.createComment({

@@ -1,8 +1,18 @@
+import { Counter } from "prom-client";
+
 import ProductService from "../services/productService.js";
 import { Response } from "../entities/response.js";
 
+const productRequestCounter = new Counter({
+  name: "product_http_requests_total",
+  help: "Total number of HTTP requests related to products",
+  labelNames: ["method"],
+});
+
 export const getProductsByVideoId = async (req, res) => {
   try {
+    productRequestCounter.labels("GET").inc();
+
     const { id } = req.params;
     const products = await ProductService.getProductsByVideoId(id);
 
@@ -33,6 +43,8 @@ export const getProductsByVideoId = async (req, res) => {
 
 export const getProductsByTitle = async (req, res) => {
   try {
+    productRequestCounter.labels("GET").inc();
+
     const { title } = req.body;
     const products = await ProductService.getProductsByTitle(title);
     return Response({

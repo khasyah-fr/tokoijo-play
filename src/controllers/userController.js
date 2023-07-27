@@ -1,8 +1,18 @@
+import { Counter } from "prom-client";
+
 import UserService from "../services/userService.js";
 import { Response } from "../entities/response.js";
 
+const userRequestCounter = new Counter({
+  name: "users_http_requests_total",
+  help: "Total number of HTTP requests related to users",
+  labelNames: ["method"],
+});
+
 export const getUsers = async (req, res) => {
   try {
+    userRequestCounter.labels("GET").inc();
+
     const users = await UserService.getUsers();
     return Response({
       res,
@@ -22,6 +32,8 @@ export const getUsers = async (req, res) => {
 
 export const getUserById = async (req, res) => {
   try {
+    userRequestCounter.labels("GET").inc();
+
     const { id } = req.params;
     const user = await UserService.getUserById(id);
 
@@ -52,6 +64,8 @@ export const getUserById = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   try {
+    userRequestCounter.labels("PUT").inc();
+
     const { id } = req.params;
     const { username } = req.body;
 
