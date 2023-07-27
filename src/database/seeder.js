@@ -27,6 +27,7 @@ const seeder = async () => {
     // Insert 5 products and 5 comments to each of the 5 videos
     for (let i = 1; i <= 5; i++) {
       const video = await Video.create({
+        user_id: users[i - 1]._id,
         title: `Video ${i}`,
         url: `https://youtube.com/videos/${i}`,
         thumbnail: `https://youtube.com/images/${i}`,

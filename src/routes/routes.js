@@ -37,7 +37,7 @@ router.post("/api/videos/:id/comments", createComment);
 router.post("/api/videos/search", getVideosByTitle);
 router.post("/api/products/search", getProductsByTitle);
 
-router.get("/metrics", async (req, res) => {
+router.get("/api/metrics", async (req, res) => {
   try {
     const metrics = await register.metrics();
     res.set("Content-Type", register.contentType);
