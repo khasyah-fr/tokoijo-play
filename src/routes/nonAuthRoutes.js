@@ -1,6 +1,10 @@
 import express from "express";
 
-import { getVideos, getVideoById } from "../controllers/videoController.js";
+import {
+  getVideos,
+  getVideoById,
+  getVideosByTitle,
+} from "../controllers/videoController.js";
 import { getProductsByVideoId } from "../controllers/productController.js";
 import { getUsers } from "../controllers/userController.js";
 import {
@@ -12,6 +16,7 @@ const nonAuthRouter = new express.Router();
 
 nonAuthRouter.get("/api/videos", getVideos);
 nonAuthRouter.get("/api/videos/:id", getVideoById);
+nonAuthRouter.post("/api/videos/search", getVideosByTitle);
 
 nonAuthRouter.get("/api/videos/:id/products", getProductsByVideoId);
 

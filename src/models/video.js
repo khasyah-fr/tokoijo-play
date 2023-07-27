@@ -8,6 +8,8 @@ const videoSchema = new mongoose.Schema({
   created_at: { type: Date, default: Date.now },
 });
 
+videoSchema.index({ title: "text" });
+
 const Video = mongoose.model("Video", videoSchema);
 
 export default Video;

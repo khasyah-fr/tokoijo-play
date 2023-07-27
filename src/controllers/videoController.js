@@ -53,3 +53,23 @@ export const getVideoById = async (req, res) => {
     });
   }
 };
+
+export const getVideosByTitle = async (req, res) => {
+  try {
+    const { title } = req.body;
+    const videos = await VideoService.getVideosByTitle(title);
+    return Response({
+      res,
+      statusCode: 200,
+      message: "Successfully get videos by title",
+      data: videos,
+    });
+  } catch (error) {
+    return Response({
+      res,
+      statusCode: 500,
+      message: "Failed to get videos by title",
+      data: `${error.name}: ${error.message}`,
+    });
+  }
+};

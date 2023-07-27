@@ -5,6 +5,7 @@ const VideoRepository = {
   findById: (videoId) => Video.findById(videoId),
   findByIdAndUpdate: (videoId, videoData) =>
     Video.findByIdAndUpdate(videoId, videoData),
+  findByTitle: (title) => Video.find({ title: title }),
 };
 
 export default VideoRepository;
