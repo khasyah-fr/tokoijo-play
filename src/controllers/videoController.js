@@ -25,7 +25,7 @@ export const getVideoById = async (req, res) => {
     const { id } = req.params;
     const video = await VideoService.getVideoById(id);
 
-    if (video === null) {
+    if (!video) {
       return Response({
         res,
         statusCode: 404,

@@ -9,7 +9,11 @@ import {
   getProductsByVideoId,
   getProductsByTitle,
 } from "../controllers/productController.js";
-import { getUsers } from "../controllers/userController.js";
+import {
+  getUsers,
+  getUserById,
+  updateUser,
+} from "../controllers/userController.js";
 import {
   getCommentsByVideoId,
   createComment,
@@ -23,6 +27,8 @@ nonAuthRouter.get("/api/videos/:id", getVideoById);
 nonAuthRouter.get("/api/videos/:id/products", getProductsByVideoId);
 
 nonAuthRouter.get("/api/users", getUsers);
+nonAuthRouter.get("/api/users/:id", getUserById);
+nonAuthRouter.put("/api/users/:id", updateUser);
 
 nonAuthRouter.get("/api/videos/:id/comments", getCommentsByVideoId);
 nonAuthRouter.post("/api/videos/:id/comments", createComment);

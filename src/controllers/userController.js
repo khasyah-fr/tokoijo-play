@@ -19,3 +19,67 @@ export const getUsers = async (req, res) => {
     });
   }
 };
+
+export const getUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await UserService.getUserById(id);
+
+    if (!user) {
+      return Response({
+        res,
+        statusCode: 404,
+        message: "Failed to get user by id",
+        data: null,
+      });
+    }
+
+    return Response({
+      res,
+      statusCode: 200,
+      message: "Successfully get user by id",
+      data: user,
+    });
+  } catch (error) {
+    return Response({
+      res,
+      statusCode: 500,
+      message: "Failed to get user by id",
+      data: `${error.name}: ${error.message}`,
+    });
+  }
+};
+
+export const updateUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { username } = req.body;
+
+    const user = await UserService.getUserById(id);
+    if (!user) {
+      return Response({
+        res,
+        statusCode: 404,
+        message: "Failed to get user by id",
+        data: null,
+      });
+    }
+
+    user.username = username;
+
+    const updateUser = await UserService.updateUser(id, user);
+    return Response({
+      res,
+      statusCode: 200,
+      message: "Successfully update user",
+      data: updateUser,
+    });
+  } catch (error) {
+    return Response({
+      res,
+      statusCode: 500,
+      message: "Failed to update user",
+      data: `${error.name}: ${error.message}`,
+    });
+  }
+};
