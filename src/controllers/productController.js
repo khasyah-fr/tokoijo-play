@@ -30,3 +30,23 @@ export const getProductsByVideoId = async (req, res) => {
     });
   }
 };
+
+export const getProductsByTitle = async (req, res) => {
+  try {
+    const { title } = req.body;
+    const products = await ProductService.getProductsByTitle(title);
+    return Response({
+      res,
+      statusCode: 200,
+      message: "Successfully get products by title",
+      data: products,
+    });
+  } catch (error) {
+    return Response({
+      res,
+      statusCode: 500,
+      message: "Failed to get products by title",
+      data: `${error.name}: ${error.message}`,
+    });
+  }
+};
