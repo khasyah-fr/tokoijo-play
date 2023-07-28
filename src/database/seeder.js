@@ -39,6 +39,7 @@ const seeder = async () => {
           video_id: video._id,
           title: `Product ${j} for video ${i}`,
           url: `https://tokopedia.com/products/${j}`,
+          thumbnail: `https://tokopedia.com/images/${j}`,
           price: (Math.floor(Math.random() * 500) + 1) * 1000,
         });
       }
