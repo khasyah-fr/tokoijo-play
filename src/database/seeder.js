@@ -13,6 +13,34 @@ const seeder = async () => {
     await Video.deleteMany({});
     await User.deleteMany({});
 
+    const yt_data = [
+      {
+        title: "Review realme 11 Pro+ Indonesia",
+        url: "https://www.youtube.com/embed/N4rqRd9P4p8",
+        thumbnail: "https://img.youtube.com/vi/N4rqRd9P4p8/sddefault.jpg",
+      },
+      {
+        title: "Sony Xperia 1 Mark V",
+        url: "https://www.youtube.com/embed/A0p_sc4PGPE",
+        thumbnail: "https://img.youtube.com/vi/A0p_sc4PGPE/sddefault.jpg",
+      },
+      {
+        title: "Nyobain Samsung Galaxy Z Flip5 dan Fold5 Indonesia!",
+        url: "https://www.youtube.com/embed/COaAOqIwjfw",
+        thumbnail: "https://img.youtube.com/vi/COaAOqIwjfw/sddefault.jpg",
+      },
+      {
+        title: "Ngeliat laptop dengan logo ini?",
+        url: "https://www.youtube.com/embed/hLXIik8dmdg",
+        thumbnail: "https://img.youtube.com/vi/hLXIik8dmdg/sddefault.jpg",
+      },
+      {
+        title: "Oppenheimer",
+        url: "https://www.youtube.com/embed/uYPbbksJxIg",
+        thumbnail: "https://img.youtube.com/vi/uYPbbksJxIg/sddefault.jpg",
+      },
+    ];
+
     // Insert 5 users
     const users = [];
     for (let i = 1; i <= 5; i++) {
@@ -28,9 +56,9 @@ const seeder = async () => {
     for (let i = 1; i <= 5; i++) {
       const video = await Video.create({
         user_id: users[i - 1]._id,
-        title: `Video ${i}`,
-        url: `https://youtube.com/videos/${i}`,
-        thumbnail: `https://youtube.com/images/${i}`,
+        title: yt_data[i - 1].title,
+        url: yt_data[i - 1].url,
+        thumbnail: yt_data[i - 1].thumbnail,
         views: 0,
       });
 
