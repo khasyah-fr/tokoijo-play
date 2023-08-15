@@ -36,7 +36,7 @@ const seeder = async () => {
       },
       {
         title: "Moge Showcase",
-        url: "",
+        url: "https://www.youtube.com/embed/Da3dFwxk_eQ",
         thumbnail: "https://i.ytimg.com/vi/Da3dFwxk_eQ/hq720.jpg",
       },
     ];
