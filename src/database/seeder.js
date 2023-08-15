@@ -17,27 +17,57 @@ const seeder = async () => {
       {
         title: "Review realme 11 Pro+ Indonesia",
         url: "https://www.youtube.com/embed/N4rqRd9P4p8",
-        thumbnail: "https://img.youtube.com/vi/N4rqRd9P4p8/sddefault.jpg",
+        thumbnail: "https://img.youtube.com/vi/N4rqRd9P4p8/hq720.jpg",
       },
       {
         title: "Sony Xperia 1 Mark V",
         url: "https://www.youtube.com/embed/A0p_sc4PGPE",
-        thumbnail: "https://img.youtube.com/vi/A0p_sc4PGPE/sddefault.jpg",
-      },
-      {
-        title: "Nyobain Samsung Galaxy Z Flip5 dan Fold5 Indonesia!",
-        url: "https://www.youtube.com/embed/COaAOqIwjfw",
-        thumbnail: "https://img.youtube.com/vi/COaAOqIwjfw/sddefault.jpg",
+        thumbnail: "https://img.youtube.com/vi/A0p_sc4PGPE/hq720.jpg",
       },
       {
         title: "Ngeliat laptop dengan logo ini?",
         url: "https://www.youtube.com/embed/hLXIik8dmdg",
-        thumbnail: "https://img.youtube.com/vi/hLXIik8dmdg/sddefault.jpg",
+        thumbnail: "https://img.youtube.com/vi/hLXIik8dmdg/hq720.jpg",
       },
       {
         title: "Oppenheimer",
         url: "https://www.youtube.com/embed/uYPbbksJxIg",
-        thumbnail: "https://img.youtube.com/vi/uYPbbksJxIg/sddefault.jpg",
+        thumbnail: "https://img.youtube.com/vi/uYPbbksJxIg/hq720.jpg",
+      },
+      {
+        title: "Moge Showcase",
+        url: "",
+        thumbnail: "https://i.ytimg.com/vi/Da3dFwxk_eQ/hq720.jpg",
+      },
+    ];
+
+    const username_data = ["Anton", "Budi", "Chika", "Dani", "Eka"];
+
+    const products_data = [
+      {
+        thumbnail:
+          "https://images.tokopedia.net/img/cache/300-square/VqbcmM/2023/7/7/d2638a5b-2c2c-435a-b663-969218e3ae18.jpg",
+        url: "https://www.tokopedia.com/eigeradventure/eiger-fiora-2-0-backpack-16l-ws-tosca-bb887",
+      },
+      {
+        thumbnail:
+          "https://images.tokopedia.net/img/cache/300-square/VqbcmM/2021/6/21/7b67647e-0a99-46de-834a-c325889035fb.jpg",
+        url: "https://www.tokopedia.com/eigeradventure/eiger-helicon-watch-olive",
+      },
+      {
+        thumbnail:
+          "https://images.tokopedia.net/img/cache/300-square/VqbcmM/2021/8/4/f075b7e2-7ae3-4345-8fed-7fba60897f60.jpg",
+        url: "https://www.tokopedia.com/eigeradventure/eiger-kinkajou-pinch-2-0-sandals-terracotta-40",
+      },
+      {
+        thumbnail:
+          "https://images.tokopedia.net/img/cache/300-square/VqbcmM/2021/11/22/ad46fa54-4d84-44e5-98ab-a308a13572c5.jpg",
+        url: "https://www.tokopedia.com/unilever-food/bango-kecap-manis-pouch-1-52kg",
+      },
+      {
+        thumbnail:
+          "https://images.tokopedia.net/img/cache/300-square/VqbcmM/2023/7/28/1644ac97-28e0-458c-a36b-fc9bf3075807.jpg",
+        url: "https://www.tokopedia.com/moisdemarsbags/tas-bahu-wanita-shoulder-bag-mois-de-mars-marlee-series-tasya-misc",
       },
     ];
 
@@ -45,7 +75,7 @@ const seeder = async () => {
     const users = [];
     for (let i = 1; i <= 5; i++) {
       const user = await User.create({
-        username: `username${i}`,
+        username: username_data[i - 1],
         password: await bcrypt.hash(`username${i}`, 10),
       });
 
@@ -66,8 +96,8 @@ const seeder = async () => {
         await Product.create({
           video_id: video._id,
           title: `Product ${j} for video ${i}`,
-          url: `https://tokopedia.com/products/${j}`,
-          thumbnail: `https://tokopedia.com/images/${j}`,
+          url: products_data[i - 1].url,
+          thumbnail: products_data[i - 1].thumbnail,
           price: (Math.floor(Math.random() * 500) + 1) * 1000,
         });
       }
