@@ -96,8 +96,8 @@ const seeder = async () => {
         await Product.create({
           video_id: video._id,
           title: `Product ${j} for video ${i}`,
-          url: products_data[i - 1].url,
-          thumbnail: products_data[i - 1].thumbnail,
+          url: products_data[j - 1].url,
+          thumbnail: products_data[j - 1].thumbnail,
           price: (Math.floor(Math.random() * 500) + 1) * 1000,
         });
       }
